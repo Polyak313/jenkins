@@ -5,8 +5,8 @@ pipeline {
         stage("Checkout") {
             steps {
                 // clone repo //
-                git branch: 'feature/docker'
-                    url: 'https://github.com/Polyak313/docker.git'
+               git([url: 'https://github.com/Polyak313/docker.git', branch: 'feature/docker'])
+                    
             }
         }
         stage('Build and Push') {
