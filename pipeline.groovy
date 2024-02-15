@@ -13,7 +13,7 @@ pipeline {
             steps {
                 // assembly docker //
                 script {
-                    def dockerImage = docker.build("docker push polyak313/nginx:${env.BUILD_NUMBER}")
+                    def dockerImage = docker.build("polyak313/nginx:${env.BUILD_NUMBER}")
                     dockerImage.push()
                 }
             }
