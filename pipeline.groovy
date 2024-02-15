@@ -1,5 +1,5 @@
 pipeline {
-    agent slave1
+    agent any
     
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('dockerhub-cred-polyak313')
