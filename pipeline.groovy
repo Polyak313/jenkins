@@ -1,9 +1,6 @@
 pipeline {
     agent {label ('slave1')}
 
-    tools { // parametrs tools
-        "org.jenkinsci.plugins.docker.commons.tools.DockerTool '24.0.7'" }
-
     stages {
         stage("Checkout") {
             steps {
