@@ -1,20 +1,24 @@
 pipeline {
-    agent {label ('slave1')}
-
+    agent slave1
+    
+    environment {
+        DOCKER_HUB_CREDENTIALS = credentials('dockerhub-cred-polyak313')
+    }
+    
     stages {
-        stage("Checkout") {
+        stage('Checkout') {
             steps {
-                // clone repo //
-               git([url: 'https://github.com/Polyak313/docker.git', branch: 'feature/docker'])
-                    
+                git 'https://github.com/Polyak313/docker.git'
             }
         }
-        stage('Build and Push') {
+        
+        stage('Build and Push Docker Image') {
             steps {
-                // assembly docker //
                 script {
-                    def dockerImage = docker.build("polyak313/nginx:${env.BUILD_NUMBER}")
-                    dockerImage.push()
+                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
+                        def customImage = docker.build('polyak313/nginx', '.')
+                        customImage.push('latest')
+                    }
                 }
             }
         }
