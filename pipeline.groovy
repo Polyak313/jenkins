@@ -2,7 +2,7 @@ pipeline {
     agent {label ('slave1')}
 
     tools { // parametrs tools
-        dockerTool '24.0.7' // docker version
+        "'org.jenkinsci.plugins.docker.commons.tools.DockerTool' '24.0.7'" // docker version
     }
 
     stages {
