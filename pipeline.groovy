@@ -2,7 +2,7 @@ pipeline {
     agent {label ('slave1')}
 
     tools { // parametrs tools
-        dockerTool 'Docker Compose version v2.23.3-desktop.2' // docker version
+        dockerTool '24.0.7' // docker version
     }
 
     stages {
