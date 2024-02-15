@@ -2,7 +2,7 @@ pipeline {
     agent {label ('slave1')}
 
     tools { // parametrs tools
-        dockerTool '18.09' // docker version
+        dockerTool 'null' // docker version
     }
 
     stages {
