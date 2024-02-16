@@ -8,8 +8,8 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Polyak313/docker.git'
-                git branch: 'feature/docker'
+                git branch: 'feature/docker', url: 'https://github.com/Polyak313/docker.git'
+
             }
         }
         
