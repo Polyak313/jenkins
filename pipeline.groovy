@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://hub.docker.com/r/polyak313/nginx', 'dockerhub-cred-polyak313') {
-                        def customImage = docker.build('nginx/Dockerfile', 'nginx/Dockerfile')
+                        def customImage = docker.build('./docker/nginx/Dockerfile', 'nginx/Dockerfile')
                         customImage.push('latest')
                     }
                 }
