@@ -12,6 +12,7 @@ pipeline {
                 checkout scmGit(
     branches: [[name: 'feature/docker']],
     userRemoteConfigs: [[credentialsId:  'git@github.com:Polyak313/docker.git',url: 'https://github.com/Polyak313/docker.git']])
+    def customImage = docker.build("custom images", "./nginx/Dockerfile")
             sh 'pwd'
             sh 'ls -la'
     	
