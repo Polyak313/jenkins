@@ -8,7 +8,7 @@ pipeline {
     stage('Check PWD') {
         steps {
             script {
-                (pwd && ls-la)
+                pwd && ls-la
             }
         }
     }
