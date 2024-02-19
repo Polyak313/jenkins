@@ -3,29 +3,24 @@ pipeline {
     
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('dockerhub-cred-polyak313')
-    } 
-
-    stages {
-        stage('Check pwd') {
-            steps {
-                script {
-                    pwd&&ls-la
-                }
-            }
-        }
     }
-  
+    
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/Polyak313/docker.git'
+               // git 'https://github.com/Polyak313/docker.git'
+                checkout scmGit(
+    branches: [[name: 'feature/docker']],
+    userRemoteConfigs: [[credentialsId:  'git@github.com:Polyak313/docker.git',url: 'https://github.com/Polyak313/docker.git']])
+    	
+
             }
         }
         
         stage('Build and Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
+                    docker.withRegistry('https://hub.docker.com/r/polyak313/nginx', 'dockerhub-cred-polyak313') {
                         def customImage = docker.build('polyak313/nginx', '.')
                         customImage.push('latest')
                     }
