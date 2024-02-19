@@ -8,11 +8,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               // git 'https://github.com/Polyak313/docker/nginx'
+               // git 'https://github.com/Polyak313/docker/nginx/Dockerfile.git'
                 checkout scmGit(
     branches: [[name: 'feature/docker']],
     userRemoteConfigs: [[credentialsId:  'git@github.com:Polyak313/docker.git',url: 'https://github.com/Polyak313/docker.git']])
-            cd ''
             sh 'pwd'
             sh 'ls -la'
     	
