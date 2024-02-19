@@ -16,6 +16,16 @@ pipeline {
 
             }
         }
+
+        stages {
+            stage('PWD') {
+                steps {
+                    script {
+                        -pwd&&ls-la
+                    }
+                }
+            }
+        }
         
         stage('Build and Push Docker Image') {
             steps {
