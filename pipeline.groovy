@@ -10,7 +10,7 @@ pipeline {
             steps {
                // git 'https://github.com/Polyak313/docker.git'
                sh 'pwd'
-               sh 'ls-la'
+               sh 'ls -la'
                 checkout scmGit(
     branches: [[name: 'feature/docker']],
     userRemoteConfigs: [[credentialsId:  'git@github.com:Polyak313/docker.git',url: 'https://github.com/Polyak313/docker.git']])
