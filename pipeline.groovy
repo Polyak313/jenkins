@@ -12,7 +12,7 @@ pipeline {
                 checkout scmGit(
     branches: [[name: 'feature/docker']],
     userRemoteConfigs: [[credentialsId:  'git@github.com:Polyak313/docker.git',url: 'https://github.com/Polyak313/docker.git']])
-            dir('nginx')
+            sh dir('nginx')
             sh 'pwd'
             sh 'ls -la'
     	
