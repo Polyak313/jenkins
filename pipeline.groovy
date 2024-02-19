@@ -12,7 +12,6 @@ pipeline {
                 checkout scmGit(
     branches: [[name: 'feature/docker']],
     userRemoteConfigs: [[credentialsId:  'git@github.com:Polyak313/docker.git',url: 'https://github.com/Polyak313/docker.git']])
-    def customImage = docker.build("custom images", "./nginx/Dockerfile")
             sh 'pwd'
             sh 'ls -la'
     	
@@ -24,7 +23,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://hub.docker.com/r/polyak313/nginx', 'dockerhub-cred-polyak313') {
-                        def customImage = docker.build("./nginx/Dockerfile", "nginx/Dockerfile")
+                        def customImage = docker.build("./docker/blob/feature/docker/nginx/Dockerfile", "nginx/Dockerfile")
                         customImage.push('latest')
                     }
                 }
