@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               // git 'https://github.com/Polyak313/docker/nginx/Dockerfile.git'
+               // git 'https://github.com/Polyak313/docker.git'
                 checkout scmGit(
     branches: [[name: 'feature/docker']],
     userRemoteConfigs: [[credentialsId:  'git@github.com:Polyak313/docker.git',url: 'https://github.com/Polyak313/docker.git']])
@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://hub.docker.com/r/polyak313/nginx', 'dockerhub-cred-polyak313') {
-                        def customImage = docker.build('polyak313/nginx', '.')
+                        def customImage = docker.build('polyak313/nginx', './nginx/Dockerfile')
                         customImage.push('latest')
                     }
                 }
