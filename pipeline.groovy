@@ -5,13 +5,16 @@ pipeline {
         DOCKER_HUB_CREDENTIALS = credentials('dockerhub-cred-polyak313')
     } 
 
-    stage('Check PWD') {
-        steps {
-            script {
-                pwd && ls-la
+    stages {
+        stage('Check pwd') {
+            steps {
+                script {
+                    pwd&&ls-la
+                }
             }
         }
     }
+  
     
     stages {
         stage('Checkout') {
